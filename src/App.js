@@ -1,25 +1,43 @@
-import logo from './logo.svg';
+
 import './App.css';
+import socket from 'socket.io-client';
+import { BrowserRouter as Router, Routes, Route, useRoutes } from "react-router-dom";
+import Login from './components/login/Login';
+import Chat from './components/chat/chat'
+import Signup from './components/signup/Signup.jsx';
+import Intro from './components/intro/Intro'
+const ENDPOINT = "http://localhost:8000/"
 
+const io = socket(ENDPOINT, { transports: ['websocket'] });
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  io.on('connect', () => {
+    console.log("i'm comming from client side");
+  })
+  let routes = useRoutes([{
+    path: '/login',
+    element: <Login />
+  },
+  {
+    path: '/chat',
+    element: <Chat />
+  },
+  {
+    path : '/signup',
+    element : <Signup />
+  },
+  {
+    path : '/',
+    element : <Intro />
+  }
+])
+  return routes
 }
+const AppWrapper = () => {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+};
 
-export default App;
+export default AppWrapper; 
