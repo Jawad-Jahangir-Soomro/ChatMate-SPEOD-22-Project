@@ -1,18 +1,15 @@
 
 import './App.css';
-import socket from 'socket.io-client';
-import { BrowserRouter as Router, Routes, Route, useRoutes } from "react-router-dom";
+
+import { BrowserRouter as Router,  useRoutes } from "react-router-dom";
 import Login from './components/login/Login';
-import Chat from './components/chat/chat'
+import Chat from './components/chat/Chat'
 import Signup from './components/signup/Signup.jsx';
 import Intro from './components/intro/Intro'
-const ENDPOINT = "http://localhost:8000/"
 
-const io = socket(ENDPOINT, { transports: ['websocket'] });
+
 function App() {
-  io.on('connect', () => {
-    console.log("i'm comming from client side");
-  })
+ 
   let routes = useRoutes([{
     path: '/login',
     element: <Login />

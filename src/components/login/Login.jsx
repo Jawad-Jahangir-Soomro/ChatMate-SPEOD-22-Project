@@ -1,17 +1,58 @@
 import React from 'react'
-import { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import './login.css'
+import { useNavigate } from 'react-router-dom';
 
 let user;
 let pass;
-export default function Login() {
 
-    const [name, setname] = useState("");
-    const senduser = ()=>{
-         user = document.getElementById('user').value
-         pass = document.getElementById('pass').value
+export default function Login() {
+  const toastOption = {
+    positon:'top',
+    autoClose: 8000,
+    pauseOnHover: true,
+    draggable: true,
+    theme: 'dark'
+  }
+const home = ()=>{
+  navigate('/')
+}
+const navigate = useNavigate();
+  const handleValidiate = ()=>{
+    const inputuser = localStorage.getItem("username")
+    const inputpass = localStorage.getItem("password")
+    if(user!==inputuser){
+      toast.error("please enter correct username",toastOption)
+      return false
     }
+    else if (pass!==inputpass){
+      toast.error('please enter correct password',toastOption)
+    }
+    else{
+      return true;
+    }
+
+
+  }
+
+  const handleuser = (event)=>{
+     user = event.target.value
+
+  }   
+  const handlepass = (event)=>{
+    pass = event.target.value
+
+ }   
+ const handleSubmit = (event)=>{
+     event.preventDefault();
+   if(handleValidiate()){
+       navigate('/chat')
+   }
+
+
+ }
+
   return (
     <>
   <meta charSet="UTF-8" />
@@ -19,9 +60,9 @@ export default function Login() {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login Page</title>
   <div id="id01" className="modal">
-    <form className="modal-content animate" action="backend.js" method="post">
+    <form className="modal-content animate" onSubmit={(event)=>handleSubmit(event)} action="/chat">
       <div className="imgcontainer">
-        <img src="img_avatar2.png" alt="Avatar" className="avatar" />
+       
       </div>
       <div className="container">
         <label htmlFor="uname" />
@@ -31,8 +72,10 @@ export default function Login() {
           name="uname"
           required=""
           id='user'
-          onChange={(e)=>setname(e.target.value)}
-        />
+          autoComplete='off'
+          onChange={(event)=>handleuser(event)}
+          
+          />
         <label htmlFor="psw" />
         <input
           type="password"
@@ -40,8 +83,9 @@ export default function Login() {
           name="psw"
           required=""
           id='pass'
+          onChange={(event)=>handlepass(event)}
         />
-         <Link onClick={(event)=>!name?event.preventDefault():null} to='/chat'><button  onClick={senduser} >Login</button></Link> 
+         <button>Login</button>
         <label>
           <input type="checkbox" defaultChecked="checked" name="remember" />{" "}
           Remember me
@@ -52,12 +96,10 @@ export default function Login() {
         id="bottomc"
         style={{ backgroundColor: "#5b5b5b" }}
       >
-     <Link to='/'> <button type="button" className="cancelbtn">
+      <button onClick={home} type="button" className="cancelbtn">
           Cancel
-        </button></Link>  
-        <span className="psw">
-          <a href='#'>password</a>
-        </span>
+        </button> 
+        <ToastContainer />
       </div>
     </form>
   </div>
