@@ -24,6 +24,7 @@
   .joinChatContainer h3 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    margin-left: -11px;
   }
   .joinChatContainer input {
     width: 210px;
@@ -194,4 +195,3 @@
   .hide {
     opacity: 0 !important;
   }
-  

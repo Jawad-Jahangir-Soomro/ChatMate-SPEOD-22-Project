@@ -6,6 +6,7 @@ import Login from './components/login/Login';
 import Chat from './components/chat/Chat'
 import Signup from './components/signup/Signup.jsx';
 import Intro from './components/intro/Intro'
+import About from './components/about/About'
 
 
 function App() {
@@ -25,6 +26,10 @@ function App() {
   {
     path : '/',
     element : <Intro />
+  },
+  {
+    path : '/about',
+    element : <About />
   }
 ])
   return routes

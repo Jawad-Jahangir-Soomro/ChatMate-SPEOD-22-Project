@@ -4,6 +4,7 @@ import { useState } from 'react';
 import io from 'socket.io-client'
 import { useEffect } from 'react';
 import ScrolltoBottom from 'react-scroll-to-bottom'
+import icon from '../../utils/icon.png'
 const socket = io.connect("http://localhost:8000/");
 
 // var username = localStorage.getItem('username')
@@ -46,6 +47,7 @@ function Chat() {
             <div className='App'>
                 {!showChat ? (
                     <div className="joinChatContainer">
+
                         <h3>Join the Chat</h3>
                         <input
                             type="text"
@@ -58,9 +60,10 @@ function Chat() {
                         <button onClick={JoinRoom}>Join Chat</button>
 
                     </div>) : (
-                    <div className="chat-window">
+                        <div className="chat-window">
                         <div className="chat-header">
-                            <p>Chat-Mate</p>
+                        <p>Chat-Mate</p>
+
                         </div>
                         <div className="chat-body">
                             <ScrolltoBottom className="message-container">

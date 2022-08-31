@@ -1,6 +1,8 @@
 import React from 'react'
 import './intro.css'
+import {Link} from 'react-router-dom'
 import { useNavigate } from 'react-router'
+import icon from '../../utils/icon.png'
 export default function Intro() {
   const navigate = useNavigate();
 
@@ -19,13 +21,16 @@ export default function Intro() {
   <title>Landing Page</title>
   <div className="topnav" id="myTopnav">
     <div className="forAlign">
-      <a href="#about">About Us</a>
+     <img id='logo' src={icon} alt="" srcset="" />
+     <a href="#" id='brand'>Chat-Mate</a>
+     <Link to={'/about'}> <a href="#about" id='about'>About Us  </a></Link>
     </div>
   </div>
   <div id="container">
+    
     <div className="text__wrapper">
       <p className="description">
-       Chat-Mate helps you connect and share with the people in your life.
+       <span>Chate-Mate</span> helps you connect and share with the people in your life.
       </p>
     </div>
     <div className="form__wrapper">
