@@ -18,4 +18,5 @@ A modern web browser (Google Chrome, Firefox, Safari, etc.)
 Internet connection
 
 Contributions
+
 Contributions to the project are always welcome. If you would like to contribute, please fork the repository, make your changes, and submit a pull request.
